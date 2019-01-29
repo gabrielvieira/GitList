@@ -54,7 +54,7 @@ class ListInteractor: ListBusinessLogic, ListDataStore {
             } else {
                 
                 guard let _result = result else {
-                    //handle error
+                    self.presenter?.presentError(error: self.genericError)
                     return
                 }
                 
