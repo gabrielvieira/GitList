@@ -8,11 +8,6 @@
 import UIKit
 import SnapKit
 
-private enum ViewState {
-    case loading
-    case normal
-}
-
 protocol ListDisplayLogic: class {
 
     func displayRepositories(viewModel: ListRepositoriesViewModel)
@@ -27,7 +22,6 @@ class ListViewController: BaseViewController, ListDisplayLogic {
     var tableViewData: [RepositoryViewModelItem] = []
     private let refreshControl = UIRefreshControl()
     private let footerView: ListFooterTableView = ListFooterTableView()
-    private var viewState: ViewState = .normal
     // MARK: Object lifecycle
     
     public init() {

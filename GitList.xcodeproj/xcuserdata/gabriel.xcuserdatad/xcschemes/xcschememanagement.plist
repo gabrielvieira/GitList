@@ -7,7 +7,25 @@
 		<key>GitList.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>8</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>AB659FFA21FF5D0800B3CC09</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AB65A00E21FF5D0A00B3CC09</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AB65A01921FF5D0A00B3CC09</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

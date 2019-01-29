@@ -8,11 +8,16 @@
 
 import UIKit
 
+enum ViewState {
+    case loading
+    case normal
+}
 //base view controller for futher customizations
 class BaseViewController: UIViewController {
 
     private var loaderView: UIView = UIView()
     private let loader: UIActivityIndicatorView = UIActivityIndicatorView(style: .whiteLarge)
+    internal var viewState: ViewState = .normal
     
     override func viewDidLoad() {
         super.viewDidLoad()
