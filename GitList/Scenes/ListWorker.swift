@@ -10,8 +10,8 @@ import UIKit
 class ListWorker {
 
     func fetchRepositories(request: ListRepositoriesRequest, completionHandler: @escaping (ListRepositoriesResponse?, Error?) -> Void) {
-        
-        BaseAPIClient.request(url: request, ofType: ListRepositoriesResponse.self) { result, error in
+
+        APIClient.request(request: request, decodingType: ListRepositoriesResponse.self) { (result, error) in
             
             completionHandler(result, error)
         }

@@ -15,10 +15,10 @@ typealias APIClientResponseArray<T:Codable> = ([T], APIClientError?)
 enum APIClientError: Error {
     case CouldNotDecodeJSON
     case BadStatus(status: Int)
-    case Other(NSError)
+    case Other(Error?)
 }
 
-class BaseAPIClient {
+class APIClient {
     
     //custom session manager for further configurations
     private static var sessionManager: Alamofire.SessionManager  = {
@@ -28,28 +28,35 @@ class BaseAPIClient {
         return Alamofire.SessionManager(configuration: configuration)
     }()
     
-    static func request<T:Codable>(url: URLRequestConvertible, ofType _: T.Type,_ completionHandler: @escaping (APIClientResponse<T>) -> Void)  {
+    //request and generic parser 
+    static func request<T:Decodable>(request: URLRequestConvertible, decodingType: T.Type,_ completionHandler: @escaping (APIClientResponse<T>) -> Void)  {
         
-        self.sessionManager.request(url).responseData(completionHandler: { response in
-        
-//        self.sessionManager.request(url).responseJSON(completionHandler: { response in
+        self.sessionManager.request(request).responseData(completionHandler: { data in
             
-            switch response.result {
-                
-            case .failure(let error):
-                let error_cast = APIClientError.Other(error as NSError)
-                completionHandler( (nil,error_cast) )
+            guard let HttpResponse = data.response else {
+                completionHandler((nil, APIClientError.Other(data.error)))
                 return
-                
-            case .success(let data):
+            }
+        
+            if HttpResponse.statusCode == 200 {
             
-                guard let obj = try? JSONDecoder().decode(T.self, from: data) else {
-                    completionHandler((nil,.CouldNotDecodeJSON))
-                    return
+                switch data.result {
+                    
+                    case .success(let jsonData):
+                        
+                        guard let obj = try? JSONDecoder().decode(decodingType, from: jsonData) else {
+                            completionHandler((nil,.CouldNotDecodeJSON))
+                            return
+                        }
+                    
+                        completionHandler((obj,nil))
+                    
+                    case .failure(let error):
+                        
+                        completionHandler((nil, APIClientError.Other(error)))
                 }
-
-                completionHandler((obj,nil))
-                return
+            } else {
+                completionHandler((nil, APIClientError.BadStatus(status: HttpResponse.statusCode)))
             }
         })
     }}

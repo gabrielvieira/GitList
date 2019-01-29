@@ -8,34 +8,50 @@
 import UIKit
 
 protocol ListBusinessLogic {
-    func fetchRepositories()
+    func fetchRepositories(resetPage: Bool)
 }
 
+//protocol for inject properties on interactor
 protocol ListDataStore {
-  //var name: String { get set }
+
 }
 
 class ListInteractor: ListBusinessLogic, ListDataStore {
  
     var presenter: ListPresentationLogic?
-    var worker: ListWorker?
+    var worker: ListWorker = ListWorker()
+    private var currentPage: Int = 1
+    private let serachQuery: String = "language:swift"
 
-    func fetchRepositories() {
+    func fetchRepositories(resetPage: Bool) {
         
-        let request = ListRepositoriesRequest(pageNumber: "1", query: "language:swift", sort: "stars")
-        self.worker = ListWorker()
+        if resetPage {
+            self.currentPage = 1
+        }
         
-        self.worker?.fetchRepositories(request: request, completionHandler: { (result, error) in
+        let request = ListRepositoriesRequest(page: self.currentPage, query: self.serachQuery, sort: .stars)
+        self.worker.fetchRepositories(request: request, completionHandler: { (result, error) in
             
             if error != nil {
                 //handle error
             } else {
                 
-                if let list = result {
-                    self.presenter?.presentRepositories(response: list)
-                } else {
+                guard let _result = result else {
                     //handle error
+                    return
                 }
+                
+                let list = _result.items
+                
+                if self.currentPage == 1 {
+                    self.presenter?.presentRepositories(list: list)
+                } else {
+                    
+                }
+                
+                
+                
+                self.currentPage += 1
             }
         })
     }

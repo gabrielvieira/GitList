@@ -18,11 +18,12 @@
 		AB65A01F21FF5D0A00B3CC09 /* GitListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB65A01E21FF5D0A00B3CC09 /* GitListUITests.swift */; };
 		AB65A03421FF607800B3CC09 /* ListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB65A02E21FF607800B3CC09 /* ListPresenter.swift */; };
 		AB65A03521FF607800B3CC09 /* ListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB65A02F21FF607800B3CC09 /* ListWorker.swift */; };
-		AB65A03621FF607800B3CC09 /* ListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB65A03021FF607800B3CC09 /* ListRouter.swift */; };
 		AB65A03721FF607800B3CC09 /* ListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB65A03121FF607800B3CC09 /* ListModels.swift */; };
 		AB65A03821FF607800B3CC09 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB65A03221FF607800B3CC09 /* ListViewController.swift */; };
 		AB65A03921FF607800B3CC09 /* ListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB65A03321FF607800B3CC09 /* ListInteractor.swift */; };
 		ADDEA11B679703B1CFBC1243 /* Pods_GitList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55AD97666FB743B9120AABD3 /* Pods_GitList.framework */; };
+		C0F0497321FFD144001D5B39 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F0497221FFD144001D5B39 /* BaseViewController.swift */; };
+		C0F0497521FFD9AA001D5B39 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F0497421FFD9AA001D5B39 /* ListTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,11 +66,12 @@
 		AB65A02021FF5D0A00B3CC09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB65A02E21FF607800B3CC09 /* ListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPresenter.swift; sourceTree = "<group>"; };
 		AB65A02F21FF607800B3CC09 /* ListWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWorker.swift; sourceTree = "<group>"; };
-		AB65A03021FF607800B3CC09 /* ListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRouter.swift; sourceTree = "<group>"; };
 		AB65A03121FF607800B3CC09 /* ListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModels.swift; sourceTree = "<group>"; };
 		AB65A03221FF607800B3CC09 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		AB65A03321FF607800B3CC09 /* ListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInteractor.swift; sourceTree = "<group>"; };
 		B83C1FD3F45BF87B63379580 /* Pods-GitListUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitListUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitListUITests/Pods-GitListUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C0F0497221FFD144001D5B39 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C0F0497421FFD9AA001D5B39 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		D947B0D131269B8F18E19FD1 /* Pods-GitListTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitListTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitListTests/Pods-GitListTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +134,7 @@
 				AB65A00521FF5D0A00B3CC09 /* Assets.xcassets */,
 				AB65A00721FF5D0A00B3CC09 /* LaunchScreen.storyboard */,
 				AB65A00A21FF5D0A00B3CC09 /* Info.plist */,
+				C0F0497221FFD144001D5B39 /* BaseViewController.swift */,
 			);
 			path = GitList;
 			sourceTree = "<group>";
@@ -168,10 +171,10 @@
 			children = (
 				AB65A02E21FF607800B3CC09 /* ListPresenter.swift */,
 				AB65A02F21FF607800B3CC09 /* ListWorker.swift */,
-				AB65A03021FF607800B3CC09 /* ListRouter.swift */,
 				AB65A03121FF607800B3CC09 /* ListModels.swift */,
 				AB65A03221FF607800B3CC09 /* ListViewController.swift */,
 				AB65A03321FF607800B3CC09 /* ListInteractor.swift */,
+				C0F0497421FFD9AA001D5B39 /* ListTableViewCell.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -429,14 +432,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB65A03721FF607800B3CC09 /* ListModels.swift in Sources */,
-				AB65A03621FF607800B3CC09 /* ListRouter.swift in Sources */,
 				AB65A03821FF607800B3CC09 /* ListViewController.swift in Sources */,
 				AB02232521FF8C16002FFCBF /* APIClient.swift in Sources */,
 				AB65A03921FF607800B3CC09 /* ListInteractor.swift in Sources */,
 				AB65A03521FF607800B3CC09 /* ListWorker.swift in Sources */,
+				C0F0497321FFD144001D5B39 /* BaseViewController.swift in Sources */,
 				AB65A03421FF607800B3CC09 /* ListPresenter.swift in Sources */,
 				AB659FFF21FF5D0800B3CC09 /* AppDelegate.swift in Sources */,
 				AB02232721FF8D72002FFCBF /* BaseRequest.swift in Sources */,
+				C0F0497521FFD9AA001D5B39 /* ListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,7 +609,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5HVKQ7JB89;
+				DEVELOPMENT_TEAM = 6C9PJ896FB;
 				INFOPLIST_FILE = GitList/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -624,7 +628,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5HVKQ7JB89;
+				DEVELOPMENT_TEAM = 6C9PJ896FB;
 				INFOPLIST_FILE = GitList/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

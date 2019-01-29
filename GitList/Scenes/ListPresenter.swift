@@ -8,7 +8,8 @@
 import UIKit
 
 protocol ListPresentationLogic {
-    func presentRepositories(response: ListRepositoriesResponse)
+    func presentRepositories(list: [RepositoryItem])
+    func presentNextRepositories(list: [RepositoryItem])
 }
 
 class ListPresenter: ListPresentationLogic {
@@ -16,19 +17,26 @@ class ListPresenter: ListPresentationLogic {
     weak var viewController: ListDisplayLogic?
 
     // MARK: Present Repositories
-
-    func presentRepositories(response: ListRepositoriesResponse) {
-        
-        //convert response to view model to decouple service and front end
-        let repositoryItems = response.items
-                              .compactMap {
-                                RepositoryItem.init(repositoryName: $0.name,
-                                                           authorName: $0.owner.login,
-                                                       authorImageUrl: $0.owner.avatarURL,
-                                                            starCount: $0.stargazersCount)
-                               }
-        
-        let viewModel = ListRepositoriesViewModel.init(itemList: repositoryItems)
+    func presentRepositories(list: [RepositoryItem]) {
+        let viewModel = self.generateViewModel(list)
         viewController?.displayRepositories(viewModel: viewModel)
+    }
+    
+    func presentNextRepositories(list: [RepositoryItem]) {
+        let viewModel = self.generateViewModel(list)
+        viewController?.displayNextRepositories(viewModel: viewModel)
+    }
+    
+    //convert response to view model to decouple service and front end
+    private func generateViewModel(_ list: [RepositoryItem]) -> ListRepositoriesViewModel {
+        
+        let repositoryItems = list
+            .compactMap {
+                RepositoryViewModelItem.init(repositoryName: $0.name,
+                                             authorName: $0.owner.login,
+                                             authorImageUrl: $0.owner.avatarURL,
+                                             starCount: $0.stargazersCount)
+        }
+        return ListRepositoriesViewModel.init(itemList: repositoryItems)
     }
 }

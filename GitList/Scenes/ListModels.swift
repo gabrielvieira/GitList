@@ -8,12 +8,13 @@
 import Foundation
 import Alamofire
 
+// MARK: ViewModel
 struct ListRepositoriesViewModel {
     
-    var itemList: [RepositoryItem]
+    var itemList: [RepositoryViewModelItem]
 }
 
-struct RepositoryItem {
+struct RepositoryViewModelItem {
     
     var repositoryName: String
     var authorName: String
@@ -21,17 +22,20 @@ struct RepositoryItem {
     var starCount: Int
 }
 
+// MARK: Request
+enum SortRepository: String {
+    
+    case stars = "stars"
+    case forks = "forks"
+    case help_wanted_issues = "help-wanted-issues"
+    case updated = "updated"
+}
+
 struct ListRepositoriesRequest: BaseRequest {
 
-    var pageNumber: String
+    var page: Int
     var query: String
-    var sort: String
-    
-    public init(pageNumber: String, query: String, sort: String) {
-        self.pageNumber = pageNumber
-        self.query = query
-        self.sort = sort
-    }
+    var sort: SortRepository
     
     var endpoint: String {
         return "https://api.github.com/search/repositories"
@@ -45,17 +49,18 @@ struct ListRepositoriesRequest: BaseRequest {
         
         return [
             "q": self.query,
-            "page": self.pageNumber,
-            "sort": self.sort
+            "page": self.page,
+            "sort": self.sort.rawValue
         ]
     }
 }
 
+// MARK: Response
 struct ListRepositoriesResponse: Codable {
     
     let totalCount: Int
     let incompleteResults: Bool
-    let items: [Item]
+    let items: [RepositoryItem]
     
     enum CodingKeys: String, CodingKey {
         case totalCount = "total_count"
@@ -64,7 +69,7 @@ struct ListRepositoriesResponse: Codable {
     }
 }
 
-struct Item: Codable {
+struct RepositoryItem: Codable {
     
     let id: Int
     let name: String
