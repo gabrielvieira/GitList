@@ -10,7 +10,6 @@ import Foundation
 import Alamofire
 
 typealias APIClientResponse<T:Codable> = (T?, APIClientError?)
-typealias APIClientResponseArray<T:Codable> = ([T], APIClientError?)
 
 enum APIClientError: Error {
     case CouldNotDecodeJSON
@@ -19,19 +18,11 @@ enum APIClientError: Error {
 }
 
 class APIClient {
-    
-    //custom session manager for further configurations
-    private static var sessionManager: Alamofire.SessionManager  = {
-        let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 4 // seconds
-        configuration.timeoutIntervalForResource = 4
-        return Alamofire.SessionManager(configuration: configuration)
-    }()
-    
+
     //request and generic parser 
     static func request<T:Decodable>(request: URLRequestConvertible, decodingType: T.Type,_ completionHandler: @escaping (APIClientResponse<T>) -> Void)  {
         
-        self.sessionManager.request(request).responseData(completionHandler: { data in
+       Alamofire.request(request).responseData(completionHandler: { data in
             
             guard let HttpResponse = data.response else {
                 completionHandler((nil, APIClientError.Other(data.error)))

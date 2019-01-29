@@ -9,7 +9,7 @@ import UIKit
 
 class ListWorker {
 
-    func fetchRepositories(request: ListRepositoriesRequest, completionHandler: @escaping (ListRepositoriesResponse?, Error?) -> Void) {
+    func fetchRepositories(request: ListRepositoriesRequest, completionHandler: @escaping (ListRepositoriesResponse?, APIClientError?) -> Void) {
 
         APIClient.request(request: request, decodingType: ListRepositoriesResponse.self) { (result, error) in
             

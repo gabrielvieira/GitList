@@ -10,6 +10,7 @@ import UIKit
 protocol ListPresentationLogic {
     func presentRepositories(list: [RepositoryItem])
     func presentNextRepositories(list: [RepositoryItem])
+    func presentError(error: String)
 }
 
 class ListPresenter: ListPresentationLogic {
@@ -35,8 +36,13 @@ class ListPresenter: ListPresentationLogic {
                 RepositoryViewModelItem.init(repositoryName: $0.name,
                                              authorName: $0.owner.login,
                                              authorImageUrl: $0.owner.avatarURL,
-                                             starCount: $0.stargazersCount)
+                                             starCount: $0.stargazersCount,
+                                             repositoryUrl: $0.htmlURL)
         }
         return ListRepositoriesViewModel.init(itemList: repositoryItems)
+    }
+    
+    func presentError(error: String) {
+        self.viewController?.displayError(message: error)
     }
 }

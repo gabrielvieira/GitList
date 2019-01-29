@@ -8,6 +8,11 @@
 import UIKit
 import SnapKit
 
+private enum ViewState {
+    case loading
+    case normal
+}
+
 protocol ListDisplayLogic: class {
     
     func displayRepositories(viewModel: ListRepositoriesViewModel)
@@ -24,6 +29,8 @@ class ListViewController: BaseViewController, ListDisplayLogic {
     var tableView: UITableView = UITableView()
     private let refreshControl = UIRefreshControl()
     private var tableViewData: [RepositoryViewModelItem] = []
+    private let footerView: ListFooterTableView = ListFooterTableView()
+    private var viewState: ViewState = .normal
     // MARK: Object lifecycle
     
     public init() {
@@ -49,15 +56,19 @@ class ListViewController: BaseViewController, ListDisplayLogic {
     
     private func configUI() {
         
+        //refresh control
         if #available(iOS 10.0, *) {
             self.tableView.refreshControl = self.refreshControl
         } else {
             self.tableView.addSubview(self.refreshControl)
         }
+        
+        self.refreshControl.addTarget(self, action: #selector(refreshRepositories(_:)), for: .valueChanged)
+        
+        //TableView setup
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(ListTableViewCell.self, forCellReuseIdentifier: ListTableViewCell.reuseIdentifier)
-        self.refreshControl.addTarget(self, action: #selector(refreshRepositories(_:)), for: .valueChanged)
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(0)
@@ -65,17 +76,18 @@ class ListViewController: BaseViewController, ListDisplayLogic {
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
-        
+        self.tableView.tableFooterView = self.footerView
         self.view.backgroundColor = .white
     }
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.showLoader()
         self.fetchRepositories(resetPage: false)
     }
     
     private func fetchRepositories(resetPage: Bool) {
-        self.showLoader()
+        self.viewState = .loading
         self.interactor?.fetchRepositories(resetPage: resetPage)
     }
     
@@ -87,7 +99,9 @@ class ListViewController: BaseViewController, ListDisplayLogic {
         self.hideLoader()
         self.stopRefresing()
         self.tableViewData = viewModel.itemList
+        self.footerView.show()
         self.tableView.reloadData()
+        self.viewState = .normal
     }
     
     func displayNextRepositories(viewModel: ListRepositoriesViewModel) {
@@ -95,10 +109,17 @@ class ListViewController: BaseViewController, ListDisplayLogic {
         self.stopRefresing()
         self.tableViewData.append(contentsOf: viewModel.itemList)
         self.tableView.reloadData()
+        self.viewState = .normal
     }
     
     func displayError(message: String) {
         //handle error
+        self.hideLoader()
+        self.stopRefresing()
+        let alert = UIAlertController(title: "Alerta", message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        self.viewState = .normal
     }
     
     func stopRefresing() {
@@ -111,6 +132,10 @@ class ListViewController: BaseViewController, ListDisplayLogic {
     
     override func hideLoader() {
         super.hideLoader()
+    }
+    
+    func hideFooterLoader(_ isHidden: Bool) {
+        self.footerView.isHidden = isHidden
     }
 }
 
@@ -138,5 +163,24 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.setup(item)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        let item = self.tableViewData[indexPath.row]
+        self.interactor?.openRepoPage(item.repositoryUrl)
+    }
+    
+    //check end of tableview for infinite scroll
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let tableviewHeight = scrollView.frame.size.height
+        let contentYoffset = scrollView.contentOffset.y
+        let distanceFromBottom = scrollView.contentSize.height - contentYoffset
+        
+        if ((distanceFromBottom < tableviewHeight) && (self.viewState != .loading)) {
+            self.viewState = .loading
+            self.interactor?.fetchRepositories(resetPage: false)
+        }
     }
 }

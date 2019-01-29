@@ -20,6 +20,7 @@ struct RepositoryViewModelItem {
     var authorName: String
     var authorImageUrl: String
     var starCount: Int
+    var repositoryUrl: String
 }
 
 // MARK: Request
@@ -38,7 +39,7 @@ struct ListRepositoriesRequest: BaseRequest {
     var sort: SortRepository
     
     var endpoint: String {
-        return "https://api.github.com/search/repositories"
+        return "/search/repositories"
     }
     
     var method: HTTPMethod {
@@ -75,12 +76,15 @@ struct RepositoryItem: Codable {
     let name: String
     let stargazersCount: Int
     let owner: Owner
+    let htmlURL: String
     
     enum CodingKeys: String, CodingKey {
+        
         case id = "id"
         case name = "name"
         case stargazersCount = "stargazers_count"
         case owner = "owner"
+        case htmlURL = "html_url"
     }
 }
 

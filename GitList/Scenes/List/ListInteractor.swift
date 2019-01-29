@@ -9,6 +9,7 @@ import UIKit
 
 protocol ListBusinessLogic {
     func fetchRepositories(resetPage: Bool)
+    func openRepoPage(_ url: String)
 }
 
 //protocol for inject properties on interactor
@@ -22,6 +23,7 @@ class ListInteractor: ListBusinessLogic, ListDataStore {
     var worker: ListWorker = ListWorker()
     private var currentPage: Int = 1
     private let serachQuery: String = "language:swift"
+    private let genericError: String = "Ocorreu um erro"
 
     func fetchRepositories(resetPage: Bool) {
         
@@ -31,9 +33,24 @@ class ListInteractor: ListBusinessLogic, ListDataStore {
         
         let request = ListRepositoriesRequest(page: self.currentPage, query: self.serachQuery, sort: .stars)
         self.worker.fetchRepositories(request: request, completionHandler: { (result, error) in
-            
-            if error != nil {
-                //handle error
+        
+            if let apiError = error {
+                //more error handlers need to be addded, but was prepared for
+                switch apiError {
+                    
+                case .CouldNotDecodeJSON:
+                    self.presenter?.presentError(error: self.genericError)
+                case .BadStatus(let status):
+                    //error code for repository limit
+                    if status == 422 {
+                        self.presenter?.presentError(error: "Não há mais repositórios")
+                    } else {
+                        self.presenter?.presentError(error: self.genericError)
+                    }
+                case .Other( let error ):
+                    self.presenter?.presentError(error: error?.localizedDescription ?? self.genericError)
+                }
+                
             } else {
                 
                 guard let _result = result else {
@@ -46,13 +63,24 @@ class ListInteractor: ListBusinessLogic, ListDataStore {
                 if self.currentPage == 1 {
                     self.presenter?.presentRepositories(list: list)
                 } else {
-                    
+                    self.presenter?.presentNextRepositories(list: list)
                 }
-                
-                
                 
                 self.currentPage += 1
             }
         })
+    }
+    
+    func openRepoPage(_ url: String) {
+        
+        guard let url = URL(string: url) else {
+            return //be safe
+        }
+        
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
     }
 }

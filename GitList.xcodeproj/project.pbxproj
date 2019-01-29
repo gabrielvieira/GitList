@@ -24,6 +24,7 @@
 		ADDEA11B679703B1CFBC1243 /* Pods_GitList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55AD97666FB743B9120AABD3 /* Pods_GitList.framework */; };
 		C0F0497321FFD144001D5B39 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F0497221FFD144001D5B39 /* BaseViewController.swift */; };
 		C0F0497521FFD9AA001D5B39 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F0497421FFD9AA001D5B39 /* ListTableViewCell.swift */; };
+		C0F0497B22000467001D5B39 /* ListFooterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F0497A22000467001D5B39 /* ListFooterTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		B83C1FD3F45BF87B63379580 /* Pods-GitListUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitListUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitListUITests/Pods-GitListUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C0F0497221FFD144001D5B39 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C0F0497421FFD9AA001D5B39 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		C0F0497A22000467001D5B39 /* ListFooterTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFooterTableView.swift; sourceTree = "<group>"; };
 		D947B0D131269B8F18E19FD1 /* Pods-GitListTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitListTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitListTests/Pods-GitListTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,12 +171,7 @@
 		AB65A02D21FF603D00B3CC09 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				AB65A02E21FF607800B3CC09 /* ListPresenter.swift */,
-				AB65A02F21FF607800B3CC09 /* ListWorker.swift */,
-				AB65A03121FF607800B3CC09 /* ListModels.swift */,
-				AB65A03221FF607800B3CC09 /* ListViewController.swift */,
-				AB65A03321FF607800B3CC09 /* ListInteractor.swift */,
-				C0F0497421FFD9AA001D5B39 /* ListTableViewCell.swift */,
+				C0F0497822000157001D5B39 /* List */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -190,6 +187,28 @@
 				88BA81098A1F210BB718B5F1 /* Pods-GitListUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C0F0497822000157001D5B39 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				C0F04979220001C0001D5B39 /* View */,
+				AB65A02E21FF607800B3CC09 /* ListPresenter.swift */,
+				AB65A02F21FF607800B3CC09 /* ListWorker.swift */,
+				AB65A03121FF607800B3CC09 /* ListModels.swift */,
+				AB65A03221FF607800B3CC09 /* ListViewController.swift */,
+				AB65A03321FF607800B3CC09 /* ListInteractor.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		C0F04979220001C0001D5B39 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C0F0497421FFD9AA001D5B39 /* ListTableViewCell.swift */,
+				C0F0497A22000467001D5B39 /* ListFooterTableView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		E26798E486CA16049D093B6B /* Frameworks */ = {
@@ -434,6 +453,7 @@
 				AB65A03721FF607800B3CC09 /* ListModels.swift in Sources */,
 				AB65A03821FF607800B3CC09 /* ListViewController.swift in Sources */,
 				AB02232521FF8C16002FFCBF /* APIClient.swift in Sources */,
+				C0F0497B22000467001D5B39 /* ListFooterTableView.swift in Sources */,
 				AB65A03921FF607800B3CC09 /* ListInteractor.swift in Sources */,
 				AB65A03521FF607800B3CC09 /* ListWorker.swift in Sources */,
 				C0F0497321FFD144001D5B39 /* BaseViewController.swift in Sources */,
@@ -615,7 +635,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.gv.GitList;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.gabriel.GitList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -634,7 +654,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.gv.GitList;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.gabriel.GitList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

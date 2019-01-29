@@ -9,6 +9,10 @@
 import Foundation
 import Alamofire
 
+struct NetworkConstants {
+    static let baseUrl = "https://api.github.com"
+}
+
 enum BaseRequestError: Error {
     case invalidEndPoint
 }
@@ -33,7 +37,9 @@ extension BaseRequest {
     
     func asURLRequest() throws -> URLRequest {
         
-        guard let _url = URL.init(string: self.endpoint) else {
+        let requestUrl = "\(NetworkConstants.baseUrl)\(self.endpoint)"
+        
+        guard let _url = URL.init(string: requestUrl) else {
             throw BaseRequestError.invalidEndPoint
         }
         
