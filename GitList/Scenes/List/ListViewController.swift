@@ -14,21 +14,18 @@ private enum ViewState {
 }
 
 protocol ListDisplayLogic: class {
-    
+
     func displayRepositories(viewModel: ListRepositoriesViewModel)
     func displayNextRepositories(viewModel: ListRepositoriesViewModel)
     func displayError(message: String)
-    func stopRefresing()
-    func showLoader()
-    func hideLoader()
 }
 
 class ListViewController: BaseViewController, ListDisplayLogic {
     
     var interactor: ListBusinessLogic?
     var tableView: UITableView = UITableView()
+    var tableViewData: [RepositoryViewModelItem] = []
     private let refreshControl = UIRefreshControl()
-    private var tableViewData: [RepositoryViewModelItem] = []
     private let footerView: ListFooterTableView = ListFooterTableView()
     private var viewState: ViewState = .normal
     // MARK: Object lifecycle

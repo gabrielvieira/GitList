@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (4.8.0)
+  - Nimble (7.3.1)
+  - Quick (1.3.2)
   - SDWebImage (4.4.3):
     - SDWebImage/Core (= 4.4.3)
   - SDWebImage/Core (4.4.3)
@@ -7,20 +9,26 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - Nimble
+  - Quick
   - SDWebImage (~> 4.0)
   - SnapKit (~> 4.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Nimble
+    - Quick
     - SDWebImage
     - SnapKit
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
+  Quick: 2623cb30d7a7f41ca62f684f679586558f483d46
   SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
-PODFILE CHECKSUM: 13456fd13f7b2d439acdb5e538e32778aea05b1d
+PODFILE CHECKSUM: 4a12932c5e6a1ca82fabebfedb0977989d82ceb3
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.3

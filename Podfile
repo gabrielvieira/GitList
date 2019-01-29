@@ -12,6 +12,8 @@ target 'GitList' do
 
   target 'GitListTests' do
     inherit! :search_paths
+    pod 'Quick'
+    pod 'Nimble'
     # Pods for testing
   end
 

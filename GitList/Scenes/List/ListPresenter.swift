@@ -29,7 +29,7 @@ class ListPresenter: ListPresentationLogic {
     }
     
     //convert response to view model to decouple service and front end
-    private func generateViewModel(_ list: [RepositoryItem]) -> ListRepositoriesViewModel {
+    internal func generateViewModel(_ list: [RepositoryItem]) -> ListRepositoriesViewModel {
         
         let repositoryItems = list
             .compactMap {
