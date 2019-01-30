@@ -20,6 +20,34 @@
                ReferencedContainer = "container:GitList.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AB65A00E21FF5D0A00B3CC09"
+               BuildableName = "GitListTests.xctest"
+               BlueprintName = "GitListTests"
+               ReferencedContainer = "container:GitList.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AB65A01921FF5D0A00B3CC09"
+               BuildableName = "GitListUITests.xctest"
+               BlueprintName = "GitListUITests"
+               ReferencedContainer = "container:GitList.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -39,6 +67,26 @@
          </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AB65A00E21FF5D0A00B3CC09"
+               BuildableName = "GitListTests.xctest"
+               BlueprintName = "GitListTests"
+               ReferencedContainer = "container:GitList.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AB65A01921FF5D0A00B3CC09"
+               BuildableName = "GitListUITests.xctest"
+               BlueprintName = "GitListUITests"
+               ReferencedContainer = "container:GitList.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
