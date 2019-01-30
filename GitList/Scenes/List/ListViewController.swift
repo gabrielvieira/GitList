@@ -73,6 +73,7 @@ class ListViewController: BaseViewController, ListDisplayLogic {
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Github"
         self.showLoader()
         self.fetchRepositories(resetPage: false)
     }

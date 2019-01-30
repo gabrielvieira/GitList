@@ -25,6 +25,7 @@
 		AB69B59E2200D353006723CC /* ListInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69B59A2200D353006723CC /* ListInteractorTests.swift */; };
 		AB69B5A02200D353006723CC /* ListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69B59C2200D353006723CC /* ListPresenterTests.swift */; };
 		ADDEA11B679703B1CFBC1243 /* Pods_GitList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55AD97666FB743B9120AABD3 /* Pods_GitList.framework */; };
+		C0665F8F2201295900E0C9B2 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0665F8E2201295900E0C9B2 /* AppRouter.swift */; };
 		C0F0497321FFD144001D5B39 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F0497221FFD144001D5B39 /* BaseViewController.swift */; };
 		C0F0497521FFD9AA001D5B39 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F0497421FFD9AA001D5B39 /* ListTableViewCell.swift */; };
 		C0F0497B22000467001D5B39 /* ListFooterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F0497A22000467001D5B39 /* ListFooterTableView.swift */; };
@@ -77,6 +78,7 @@
 		AB69B59A2200D353006723CC /* ListInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInteractorTests.swift; sourceTree = "<group>"; };
 		AB69B59C2200D353006723CC /* ListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPresenterTests.swift; sourceTree = "<group>"; };
 		B83C1FD3F45BF87B63379580 /* Pods-GitListUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitListUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitListUITests/Pods-GitListUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C0665F8E2201295900E0C9B2 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		C0F0497221FFD144001D5B39 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C0F0497421FFD9AA001D5B39 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		C0F0497A22000467001D5B39 /* ListFooterTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFooterTableView.swift; sourceTree = "<group>"; };
@@ -136,13 +138,13 @@
 		AB659FFD21FF5D0800B3CC09 /* GitList */ = {
 			isa = PBXGroup;
 			children = (
+				C0665F8D2201293600E0C9B2 /* Common */,
 				AB65A02D21FF603D00B3CC09 /* Scenes */,
 				AB65A02C21FF600700B3CC09 /* Network */,
 				AB659FFE21FF5D0800B3CC09 /* AppDelegate.swift */,
 				AB65A00521FF5D0A00B3CC09 /* Assets.xcassets */,
 				AB65A00721FF5D0A00B3CC09 /* LaunchScreen.storyboard */,
 				AB65A00A21FF5D0A00B3CC09 /* Info.plist */,
-				C0F0497221FFD144001D5B39 /* BaseViewController.swift */,
 			);
 			path = GitList;
 			sourceTree = "<group>";
@@ -212,6 +214,15 @@
 				88BA81098A1F210BB718B5F1 /* Pods-GitListUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C0665F8D2201293600E0C9B2 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C0F0497221FFD144001D5B39 /* BaseViewController.swift */,
+				C0665F8E2201295900E0C9B2 /* AppRouter.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		C0F0497822000157001D5B39 /* List */ = {
@@ -508,6 +519,7 @@
 				AB65A03521FF607800B3CC09 /* ListWorker.swift in Sources */,
 				C0F0497321FFD144001D5B39 /* BaseViewController.swift in Sources */,
 				AB65A03421FF607800B3CC09 /* ListPresenter.swift in Sources */,
+				C0665F8F2201295900E0C9B2 /* AppRouter.swift in Sources */,
 				AB659FFF21FF5D0800B3CC09 /* AppDelegate.swift in Sources */,
 				AB02232721FF8D72002FFCBF /* BaseRequest.swift in Sources */,
 				C0F0497521FFD9AA001D5B39 /* ListTableViewCell.swift in Sources */,
